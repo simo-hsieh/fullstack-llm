@@ -2,7 +2,8 @@ import uuid
 
 from pydantic import EmailStr
 from sqlmodel import Field, Relationship, SQLModel
-
+from pydantic import BaseModel
+from typing import List
 
 # Shared properties
 class UserBase(SQLModel):
@@ -112,3 +113,22 @@ class TokenPayload(SQLModel):
 class NewPassword(SQLModel):
     token: str
     new_password: str = Field(min_length=8, max_length=40)
+
+class InfringementCheckInput(BaseModel):
+    patent_id: str
+    company_name: str
+
+class InfringingProduct(BaseModel):
+    product_name: str
+    infringement_likelihood: str
+    relevant_claims: List[str]
+    explanation: str
+    specific_features: List[str]
+
+class InfringementCheckResponse(BaseModel):
+    analysis_id: str
+    patent_id: str
+    company_name: str
+    analysis_date: str
+    top_infringing_products: List[InfringingProduct]
+    overall_risk_assessment: str
