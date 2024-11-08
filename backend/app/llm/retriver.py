@@ -1,40 +1,71 @@
-from langchain_core.runnables import RunnablePassthrough
-from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from langchain_openai import ChatOpenAI
-from app.models import InfringementCheckInput, InfringementCheckResponse, InfringingProduct
-def retrieve_infringement_check(InfringementCheckInput: InfringementCheckInput) -> InfringementCheckResponse:
-    return InfringementCheckResponse(
-                analysis_id="1",
-        patent_id="US-RE49889-E1",
-        company_name="Walmart Inc.",
-        analysis_date="2024-10-31",
-        top_infringing_products=[
-            InfringingProduct(
-                product_name="Walmart Shopping App",
-                infringement_likelihood="High",
-                relevant_claims=["1", "2", "3", "20", "21"],
-                explanation="The Walmart Shopping App implements several key elements of the patent claims including the direct advertisement-to-list functionality, mobile application integration, and shopping list synchronization. The app's implementation of digital advertisement display and product data handling closely matches the patent's specifications.",
-                specific_features=[
-                    "Direct advertisement-to-list functionality",
-                    "Mobile app integration",
-                    "Shopping list synchronization",
-                    "Digital weekly ads integration",
-                    "Product data payload handling"
-                ]
-            ),
-            InfringingProduct(
-                product_name="Walmart+",
-                infringement_likelihood="Moderate",
-                relevant_claims=["1", "40", "41", "42"],
-                explanation="The Walmart+ membership program includes shopping list features that partially implement the patent's claims, particularly regarding list synchronization and deep linking capabilities. While not as complete an implementation as the main Shopping App, it still incorporates key patented elements in its list management functionality.",
-                specific_features=[
-                    "Shopping list synchronization across devices",
-                    "Deep linking to product lists",
-                    "Advertisement integration in member benefits",
-                    "Cloud-based list storage"
-                ]
-            ),
-        ],
-        overall_risk_assessment="High risk of infringement due to implementation of core patent claims in multiple products, particularly the Shopping App which implements most key elements of the patent claims. Walmart+ presents additional moderate risk through its partial implementation of the patented technology."
+from app.models import InfringementCheckResponse
+from app.llm.prompt import QA_CHAIN_PROMPT
+from langchain.chat_models import ChatOpenAI
+from pydantic import ValidationError
+from langchain.output_parsers.json import SimpleJsonOutputParser
+import json
+
+def format_docs(docs):
+    return "\n\n".join(doc.page_content for doc in docs)
+
+def debug_print(data, label="Data at this stage"):
+    print(f"{label}:\n", data)
+    return data
+
+def retrieve_infringement_check(vector_store, company_name, patent_claim, prompt = QA_CHAIN_PROMPT) -> InfringementCheckResponse:
+    model = ChatOpenAI(
+        model="gpt-4o",
+        temperature=0,
+        max_tokens=None,
+        timeout=None,
+        max_retries=2,
     )
+    retriever = vector_store.as_retriever()
+    json_parser = SimpleJsonOutputParser()
+    chain = (
+        {"context": retriever, "query": RunnablePassthrough(), "company_name": RunnableLambda(lambda _: company_name), "patent_claim": RunnableLambda(lambda _: patent_claim)}
+        # | RunnableLambda(lambda data: debug_print(data, label="Before Prompt"))
+        | prompt
+        | RunnableLambda(lambda data: debug_print(data, label="Before Model"))
+        | model
+        # | RunnableLambda(lambda data: debug_print(data, label="Before Prompt"))
+        | json_parser
+    )
+    query = "Use the following pieces of context, company name, and patent claim to do patent infringement analysis. Pick two most possible patents."
+    try:
+        response = chain.invoke(query)
+        # print(f"response: {InfringementCheckResponse(**response)}")
+        return InfringementCheckResponse(**response)
+    except (json.JSONDecodeError, ValidationError) as e:
+        print("Invalid response format:", e)
+        return "Invalid response format"
+
+def fuzzy_search_company(company_name: str, vector_store):
+    results = vector_store.similarity_search_with_score(
+        company_name,
+        k=1,
+        expr='source == "/app/app/mockdata/company_products.json"',
+    )
+    for res, score in results:
+        print(f"* [SIM={score:3f}] {res.page_content} [{res.metadata}]")
+    return results[0][0].page_content
+
+def fuzzy_search_patent_id(patent_id: str, vector_store):
+    results = vector_store.similarity_search_with_score(
+        patent_id,
+        k=1,
+        expr='source == "/app/app/mockdata/patents.json"',
+    )
+    for res, score in results:
+        print(f"* [SIM={score:3f}] {res.page_content} [{res.metadata}]")
+    return results[0][0].page_content
+
+def get_patent_by_id(patent_id: str, vector_store):
+    results = vector_store.similarity_search_with_score(
+        "*",
+        k=1,
+        filter={"patent_id": patent_id, 'source': '/app/app/mockdata/patents.json'}
+    )
+    return results
