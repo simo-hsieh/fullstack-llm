@@ -1,0 +1,222 @@
+[
+    {
+        "product_name": "Smart LED TV",
+        "company_name": "Walmart Inc.",
+        "product_description": "A 55-inch smart LED TV with 4K resolution, voice control, and app streaming capabilities."
+    },
+    {
+        "product_name": "Walmart+ Subscription",
+        "company_name": "Walmart Inc.",
+        "product_description": "A membership service offering free shipping, grocery delivery, and fuel discounts."
+    },
+    {
+        "product_name": "Walmart App",
+        "company_name": "Walmart Inc.",
+        "product_description": "A mobile app that enables easy online shopping, order tracking, and store locator functionalities."
+    },
+    {
+        "product_name": "Walmart Grocery Pickup",
+        "company_name": "Walmart Inc.",
+        "product_description": "A service that allows customers to order groceries online and pick them up at their local Walmart store."
+    },
+    {
+        "product_name": "Walmart Smart Thermostat",
+        "company_name": "Walmart Inc.",
+        "product_description": "An energy-efficient smart thermostat that adjusts temperature settings based on usage patterns."
+    },
+    {
+        "product_name": "Walmart VR Headset",
+        "company_name": "Walmart Inc.",
+        "product_description": "A virtual reality headset compatible with a wide range of gaming platforms and immersive experiences."
+    },
+    {
+        "product_name": "Walmart Fitness Tracker",
+        "company_name": "Walmart Inc.",
+        "product_description": "A wearable fitness tracker that monitors steps, heart rate, sleep patterns, and activity levels."
+    },
+    {
+        "product_name": "Walmart Robot Vacuum",
+        "company_name": "Walmart Inc.",
+        "product_description": "An autonomous vacuum cleaner with mapping technology and app controls for convenient cleaning."
+    },
+    {
+        "product_name": "Walmart Smart Security Camera",
+        "company_name": "Walmart Inc.",
+        "product_description": "A 1080p HD smart camera with night vision and motion detection for home security."
+    },
+    {
+        "product_name": "Walmart Smart Light Bulbs",
+        "company_name": "Walmart Inc.",
+        "product_description": "Energy-efficient LED bulbs that can be controlled via a smartphone app or voice assistant."
+    },
+    {
+        "product_name": "Walmart Wireless Earbuds",
+        "company_name": "Walmart Inc.",
+        "product_description": "True wireless earbuds with noise cancellation and long battery life."
+    },
+    {
+        "product_name": "Walmart Power Bank",
+        "company_name": "Walmart Inc.",
+        "product_description": "A portable charger with high capacity to keep devices powered on the go."
+    },
+    {
+        "product_name": "Walmart Air Purifier",
+        "company_name": "Walmart Inc.",
+        "product_description": "A compact air purifier designed to improve air quality in small rooms."
+    },
+    {
+        "product_name": "Walmart E-Scooter",
+        "company_name": "Walmart Inc.",
+        "product_description": "An electric scooter with a foldable design and long battery life for urban commuting."
+    },
+    {
+        "product_name": "Walmart Digital Camera",
+        "company_name": "Walmart Inc.",
+        "product_description": "A compact digital camera with 20 megapixels and 4K video recording capabilities."
+    },
+    {
+        "product_name": "Walmart Laptop",
+        "company_name": "Walmart Inc.",
+        "product_description": "A budget-friendly laptop with an Intel Core processor, 8GB RAM, and a 15-inch display."
+    },
+    {
+        "product_name": "Walmart Smartwatch",
+        "company_name": "Walmart Inc.",
+        "product_description": "A smartwatch with fitness tracking, heart rate monitoring, and smartphone notifications."
+    },
+    {
+        "product_name": "Walmart Cooking Set",
+        "company_name": "Walmart Inc.",
+        "product_description": "A complete cookware set with non-stick pans, pots, and kitchen utensils."
+    },
+    {
+        "product_name": "Walmart Home Robot",
+        "company_name": "Walmart Inc.",
+        "product_description": "A multi-functional home robot that assists with cleaning, cooking, and entertainment."
+    },
+    {
+        "product_name": "Walmart Electric Grill",
+        "company_name": "Walmart Inc.",
+        "product_description": "A compact and portable electric grill for indoor or outdoor use, ideal for grilling burgers, veggies, and more."
+    },
+    {
+        "product_name": "Walmart Desk Lamp",
+        "company_name": "Walmart Inc.",
+        "product_description": "An LED desk lamp with adjustable brightness and a modern design, perfect for work or study."
+    },
+    {
+        "product_name": "Walmart Bluetooth Speaker",
+        "company_name": "Walmart Inc.",
+        "product_description": "A portable Bluetooth speaker with high-quality sound and water resistance."
+    },
+    {
+        "product_name": "Walmart Smart Plug",
+        "company_name": "Walmart Inc.",
+        "product_description": "A smart plug that allows users to control appliances remotely through an app or voice assistant."
+    },
+    {
+        "product_name": "Walmart Electric Pressure Cooker",
+        "company_name": "Walmart Inc.",
+        "product_description": "A versatile electric pressure cooker for cooking meals faster with built-in safety features."
+    },
+    {
+        "product_name": "Walmart Cordless Drill",
+        "company_name": "Walmart Inc.",
+        "product_description": "A lightweight cordless drill with adjustable speed settings for both heavy-duty and delicate tasks."
+    },
+    {
+        "product_name": "Walmart Weighted Blanket",
+        "company_name": "Walmart Inc.",
+        "product_description": "A therapeutic weighted blanket designed to reduce anxiety and improve sleep quality."
+    },
+    {
+        "product_name": "Walmart Smart Refrigerator",
+        "company_name": "Walmart Inc.",
+        "product_description": "A smart refrigerator with a touch screen, Wi-Fi connectivity, and energy-saving features."
+    },
+    {
+        "product_name": "Walmart Electric Toothbrush",
+        "company_name": "Walmart Inc.",
+        "product_description": "A rechargeable electric toothbrush with a built-in timer and multiple cleaning modes."
+    },
+    {
+        "product_name": "Walmart Robot Lawn Mower",
+        "company_name": "Walmart Inc.",
+        "product_description": "An autonomous lawn mower that can navigate and mow your lawn automatically, saving you time."
+    },
+    {
+        "product_name": "Walmart Smart Door Lock",
+        "company_name": "Walmart Inc.",
+        "product_description": "A smart door lock that allows for keyless entry and remote locking/unlocking via smartphone."
+    },
+    {
+        "product_name": "Walmart Smart Home Hub",
+        "company_name": "Walmart Inc.",
+        "product_description": "A hub for controlling all your smart home devices from one place via voice or mobile app."
+    },
+    {
+        "product_name": "Walmart Personal Air Conditioner",
+        "company_name": "Walmart Inc.",
+        "product_description": "A portable personal air conditioner for cooling small spaces quickly and efficiently."
+    },
+    {
+        "product_name": "Walmart Instant Camera",
+        "company_name": "Walmart Inc.",
+        "product_description": "A fun instant camera that prints photos immediately after taking them, with customizable frames."
+    },
+    {
+        "product_name": "Walmart Touchscreen Monitor",
+        "company_name": "Walmart Inc.",
+        "product_description": "A 24-inch touchscreen monitor with full HD resolution and adjustable stand for home or office use."
+    },
+    {
+        "product_name": "Smartwatch Pro",
+        "company_name": "Apple Inc.",
+        "product_description": "A premium smartwatch with health monitoring, GPS, and integration with iOS devices."
+    },
+    {
+        "product_name": "Electric Car Charger",
+        "company_name": "Tesla Inc.",
+        "product_description": "A fast-charging station for electric vehicles that supports multiple charging standards."
+    },
+    {
+        "product_name": "Noise Cancelling Headphones",
+        "company_name": "Sony Corp.",
+        "product_description": "Wireless over-ear headphones with adaptive noise cancellation and high-fidelity sound quality."
+    },
+    {
+        "product_name": "Smart Thermostat",
+        "company_name": "Nest Labs",
+        "product_description": "A smart thermostat that learns your temperature preferences and adapts to save energy."
+    },
+    {
+        "product_name": "4K Streaming Device",
+        "company_name": "Roku Inc.",
+        "product_description": "A streaming device that provides 4K resolution content with access to all major streaming platforms."
+    },
+    {
+        "product_name": "Home Surveillance System",
+        "company_name": "Ring LLC",
+        "product_description": "A smart home security system with cameras, motion detectors, and remote monitoring."
+    },
+    {
+        "product_name": "Wireless Charging Pad",
+        "company_name": "Samsung Electronics",
+        "product_description": "A wireless charging pad that supports fast charging for compatible smartphones and devices."
+    },
+    {
+        "product_name": "Smart Refrigerator",
+        "company_name": "LG Electronics",
+        "product_description": "A smart refrigerator with touchscreen controls, voice assistant, and inventory management."
+    },
+    {
+        "product_name": "Electric Scooter",
+        "company_name": "Xiaomi Inc.",
+        "product_description": "A lightweight electric scooter with a long-range battery and app-based controls."
+    },
+    {
+        "product_name": "Voice Assistant Speaker",
+        "company_name": "Amazon Inc.",
+        "product_description": "A voice-controlled smart speaker that integrates with Alexa for home automation and entertainment."
+    }
+]
