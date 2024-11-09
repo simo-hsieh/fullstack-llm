@@ -53,14 +53,18 @@ def fuzzy_search_company(company_name: str, vector_store):
     return results[0][0].page_content
 
 def fuzzy_search_patent_id(patent_id: str, vector_store):
-    results = vector_store.similarity_search_with_score(
-        patent_id,
-        k=1,
-        expr='source == "/app/app/mockdata/patents.json"',
-    )
-    for res, score in results:
-        print(f"* [SIM={score:3f}] {res.page_content} [{res.metadata}]")
-    return results[0][0].page_content
+    try:
+        results = vector_store.similarity_search_with_score(
+            patent_id,
+            k=1,
+            expr='source == "/app/app/mockdata/patents.json"',
+        )
+        # for res, score in results:
+        #     print(f"* [SIM={score:3f}] {res.page_content} [{res.metadata}]")
+        return results[0][0].page_content
+    except Exception as e:
+        print(f"An error occurred during fuzzy search fuzzy_search_patent_id: {e}")
+        return None
 
 def get_patent_by_id(patent_id: str, vector_store):
     results = vector_store.similarity_search_with_score(
