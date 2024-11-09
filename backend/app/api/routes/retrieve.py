@@ -16,8 +16,12 @@ def infringement_check(*, session: SessionDep, current_user: CurrentUser, infrin
     """
     vector_store = get_vector_store()
     company_name = fuzzy_search_company(infringe_in.company_name, vector_store)
+    if not company_name:
+        raise HTTPException(status_code=404, detail="company not found")
     patent = get_patent_by_id(infringe_in.patent_id, vector_store)
+    if not patent:
+        raise HTTPException(status_code=404, detail="patent not found")
     try:
         return retrieve_infringement_check(vector_store, company_name, patent)
     except:
-        return {"message": "not valid result"}
+        raise HTTPException(status_code=404, detail="no valid report")
