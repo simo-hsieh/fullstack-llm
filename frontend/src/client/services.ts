@@ -18,6 +18,8 @@ import type {
   ItemPublic,
   ItemsPublic,
   ItemUpdate,
+  InfringementCheck,
+  InfringementCheckReport
 } from "./models"
 
 export type TDataLoginAccessToken = {
@@ -521,6 +523,32 @@ export class ItemsService {
       path: {
         id,
       },
+      errors: {
+        422: `Validation Error`,
+      },
+    })
+  }
+}
+
+export type TDataCreateInfringementCheck = {
+  requestBody: InfringementCheck
+}
+
+export class InfringementCheckService {
+  /**
+   * Create Infringement Check
+   * @returns InfringementCheckReport
+   * @throws ApiError
+   */
+  public static createInfringementCheck(
+    data: TDataCreateInfringementCheck,
+  ): CancelablePromise<InfringementCheckReport> {
+    const { requestBody } = data
+    return __request(OpenAPI, {
+      method: "POST",
+      url: "/api/v1/retrieve/infringement-check",
+      body: requestBody,
+      mediaType: "application/json",
       errors: {
         422: `Validation Error`,
       },

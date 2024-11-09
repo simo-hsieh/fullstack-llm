@@ -97,3 +97,26 @@ export type ValidationError = {
   msg: string
   type: string
 }
+
+export type InfringementCheck = {
+  company_name: string;
+  patent_id: string;
+}
+
+export type InfringingProduct = {
+  product_name: string;
+  infringement_likelihood: string;
+  relevant_claims: string[];
+  explanation: string;
+  specific_features: string[];
+}
+
+export type InfringementCheckReport = {
+  analysis_id: string;
+  patent_id: string;
+  company_name: string;
+  analysis_date: string;
+  top_infringing_products: InfringingProduct[];
+  overall_risk_assessment: string;
+}
+
