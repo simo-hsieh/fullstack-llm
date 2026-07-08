@@ -294,3 +294,50 @@ on its own.
 - **L3 (downstream task success)** — the truest signal, but needs a consumer
   workload (e.g., an instrumented test that runs after provisioning). Park it
   until Phase 3; the schema already has room for it.
+
+---
+
+## 9. Prior art & references
+
+The design choices above are independently validated by published work:
+
+- **[AndroidWorld](https://arxiv.org/abs/2405.14573) (Google DeepMind)** —
+  the closest prior art. Benchmark of 116 Android tasks graded by **inspecting
+  actual device state via adb** (databases, filesystem, settings) rather than
+  UI appearance or LLM judges — exactly this project's L2 layer. Its
+  **parameterized task templates** (each task instantiable into millions of
+  variants) are the model for Phase 4 auto case generation. Study its
+  [codebase](https://github.com/google-research/android_world) before building
+  the verifier. Note the domain difference: AndroidWorld evaluates UI-control
+  agents; this project evaluates *provisioning/desired-state* agents — the
+  verification technique transfers, the task space doesn't overlap.
+- **[τ-bench](https://arxiv.org/abs/2406.12045) (Sierra)** — grades agents on
+  **final database state**, not conversation content, and introduced
+  **pass^k** (all k attempts succeed) as the reliability metric. Found
+  state-of-the-art agents wildly inconsistent (pass^8 < 25% in retail) —
+  reliability, not peak capability, is the discriminating measurement.
+- **[Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
+  (Anthropic, Jan 2026)** — practical agent-eval guide: start with **20–50
+  tasks drawn from real failures**, encode expected behavior explicitly, mine
+  the bug tracker/support queue once in production. Frames evals as the thing
+  that lets a team adopt a new model in days instead of weeks.
+- **[SWE-bench Verified](https://openai.com/index/introducing-swe-bench-verified/)
+  (OpenAI)** — the dataset-quality cautionary tale: human annotation of the
+  original SWE-bench found **38% of tasks underspecified** and **61% with
+  unfair tests**. Lesson: eval *cases* need verification too — hence the rule
+  that every case (including Phase 4 mutants) must be passable by a golden
+  template. Its eventual
+  [deprecation](https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/)
+  (contamination, test flaws) is the argument for dataset versioning and
+  periodic re-audit.
+- **[Adding Error Bars to Evals](https://arxiv.org/abs/2411.00640) (Evan
+  Miller, Anthropic)** — evals are experiments; report standard errors, use
+  paired per-case comparisons between models, cluster errors correctly
+  (naive SEs can understate noise 3×). With a 30–50 case dataset, a few
+  points of pass-rate difference between Claude and GPT is likely noise —
+  paired-difference tests are how to tell.
+- **[Clio](https://www.anthropic.com/research/clio) (Anthropic)** — the
+  pattern for Phase 3 prod analysis: use the model itself to summarize and
+  cluster production runs bottom-up into interpretable groups, then let
+  humans look only at clusters. Applied here: embed/cluster
+  (intent, failure signature) pairs from the results store.
